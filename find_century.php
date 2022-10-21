@@ -17,21 +17,21 @@ require_once 'conn.php';
 <body>
 
     <div class="container mt-3">
-    <h1>Find the best selling products</h1> 
-    <p>Write a query that returns only the top five selling items in the table.</p> 
+    <h1> Find the century for the year</h1>
+    <p>Write a query for the table above that’ll return the century that the year is in. The results of this query should have the
+    following values: 18, 21, 17, 19, 20</p>          
     <table class="table table-bordered w-25">
         <thead>
         <tr>
             <th>id</th>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Year</th>
         </tr>
         </thead>
         <tbody>
         <?php
         // sql query
-        // select all the row in products table
-        $sql = "SELECT * FROM products";
+        // select all rows from table ages
+        $sql = "SELECT * FROM year_century";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
         if($result->num_rows > 0) {
@@ -41,31 +41,29 @@ require_once 'conn.php';
         ?>
         <tr>
             <td> <?php echo $row['id']; ?> </td>
-            <td> <?php echo $row['Name']; ?> </td>
-            <td> <?php echo $row['Amount_Sold']; ?>  </td>
+            <td> <?php echo $row['Year']; ?> </td>
         </tr>
         <?php
             }
-        } else {
-            echo "<h1>No Result</h1>";
-        }
+        }    
         ?>
         </tbody>
     </table>
-    <h2>Answer : </h2>
+    <h2>Answer:</h2>
     <table class="table table-bordered w-25">
         <thead>
         <tr>
             <th>id</th>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Year</th>
+            <th>Century</th>
         </tr>
         </thead>
         <tbody>
         <?php
         // sql query
-        // sort the result by amount_sold row in descending order show only 5
-        $sql = "SELECT * FROM products ORDER BY Amount_Sold DESC LIMIT 5";
+        // extract a value of row
+        // substr(string, start, length )
+        $sql = "SELECT id, Year, SUBSTR(Year,1,2 ) AS getCentury FROM year_century ";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
         if($result->num_rows > 0) {
@@ -75,8 +73,8 @@ require_once 'conn.php';
         ?>
         <tr>
             <td> <b> <?php echo $row['id']; ?> </b> </td>
-            <td> <b> <?php echo $row['Name']; ?> </b> </td>
-            <td> <b> <?php echo $row['Amount_Sold']; ?> </b> </td>
+            <td> <b> <?php echo $row['Year']; ?> </b> </td>
+            <td> <b> <?php echo $row['getCentury']; ?> </b> </td>
         </tr>
         <?php
             }

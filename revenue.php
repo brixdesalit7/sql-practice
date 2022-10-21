@@ -17,21 +17,23 @@ require_once 'conn.php';
 <body>
 
     <div class="container mt-3">
-    <h1>Find the best selling products</h1> 
-    <p>Write a query that returns only the top five selling items in the table.</p> 
+    <h1>Select all the divisions that have had revenue this year</h1>
+    <p>Your task is to write a query for this table that’ll return just the division ids for all the 
+    divisions that had positive revenue in 2021. Your query should return the following values: 1, 4</p>          
     <table class="table table-bordered w-25">
         <thead>
         <tr>
             <th>id</th>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Division ID</th>
+            <th>Year</th>
+            <th>Revenue</th>
         </tr>
         </thead>
         <tbody>
         <?php
         // sql query
-        // select all the row in products table
-        $sql = "SELECT * FROM products";
+        // select all rows from table ages
+        $sql = "SELECT * FROM division_revenue";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
         if($result->num_rows > 0) {
@@ -41,31 +43,30 @@ require_once 'conn.php';
         ?>
         <tr>
             <td> <?php echo $row['id']; ?> </td>
-            <td> <?php echo $row['Name']; ?> </td>
-            <td> <?php echo $row['Amount_Sold']; ?>  </td>
+            <td> <?php echo $row['Division_id']; ?> </td>
+            <td> <?php echo $row['Year']; ?> </td>
+            <td> <?php echo $row['Revenue']; ?> </td>
         </tr>
         <?php
             }
-        } else {
-            echo "<h1>No Result</h1>";
-        }
+        }    
         ?>
         </tbody>
     </table>
-    <h2>Answer : </h2>
+    <h2>Answer:</h2>
     <table class="table table-bordered w-25">
         <thead>
         <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Division ID</th> 
         </tr>
         </thead>
         <tbody>
         <?php
         // sql query
-        // sort the result by amount_sold row in descending order show only 5
-        $sql = "SELECT * FROM products ORDER BY Amount_Sold DESC LIMIT 5";
+        // filter the sql with where
+        // sign will check if the value is positive or negative 
+        // where year is equal to 2021 and sign is positive
+        $sql = "SELECT * FROM division_revenue WHERE Year = 2021 AND SIGN(Revenue) = 1";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
         if($result->num_rows > 0) {
@@ -74,9 +75,7 @@ require_once 'conn.php';
             while($row = $result->fetch_assoc()) {
         ?>
         <tr>
-            <td> <b> <?php echo $row['id']; ?> </b> </td>
-            <td> <b> <?php echo $row['Name']; ?> </b> </td>
-            <td> <b> <?php echo $row['Amount_Sold']; ?> </b> </td>
+            <td> <b> <?php echo $row['Division_id']; ?> </b> </td>
         </tr>
         <?php
             }

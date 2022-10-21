@@ -17,21 +17,21 @@ require_once 'conn.php';
 <body>
 
     <div class="container mt-3">
-    <h1>Find the best selling products</h1> 
-    <p>Write a query that returns only the top five selling items in the table.</p> 
+    <h1>Even or odd</h1> 
+    <p>Your job is to return whether or not the number in the Value column is even or odd rather than returning the number itself.
+    Your query should return the following values: even, odd, odd, even, odd</p> 
     <table class="table table-bordered w-25">
         <thead>
         <tr>
             <th>id</th>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Value</th>
         </tr>
         </thead>
         <tbody>
         <?php
         // sql query
         // select all the row in products table
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM even_odd";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
         if($result->num_rows > 0) {
@@ -41,8 +41,7 @@ require_once 'conn.php';
         ?>
         <tr>
             <td> <?php echo $row['id']; ?> </td>
-            <td> <?php echo $row['Name']; ?> </td>
-            <td> <?php echo $row['Amount_Sold']; ?>  </td>
+            <td> <?php echo $row['Value']; ?> </td>
         </tr>
         <?php
             }
@@ -57,15 +56,19 @@ require_once 'conn.php';
         <thead>
         <tr>
             <th>id</th>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Value</th>
+            <th>Even or Odd</th>
         </tr>
         </thead>
         <tbody>
         <?php
         // sql query
-        // sort the result by amount_sold row in descending order show only 5
-        $sql = "SELECT * FROM products ORDER BY Amount_Sold DESC LIMIT 5";
+        // create a condition with case statement
+        // divide a value of row Value to 2 and get the remainder with modulo operator %
+        // if the remainder is 0 output even
+        // if the remainder is 1 output odd
+        // give the alias the value row
+        $sql = "SELECT id, Value, CASE WHEN Value % 2 = 0 THEN 'Even' WHEN Value % 2 = 1 THEN 'Odd' END AS even_odd FROM even_odd ";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
         if($result->num_rows > 0) {
@@ -75,8 +78,8 @@ require_once 'conn.php';
         ?>
         <tr>
             <td> <b> <?php echo $row['id']; ?> </b> </td>
-            <td> <b> <?php echo $row['Name']; ?> </b> </td>
-            <td> <b> <?php echo $row['Amount_Sold']; ?> </b> </td>
+            <td> <b> <?php echo $row['Value']; ?> </b> </td>
+            <td> <b> <?php echo $row['even_odd']; ?> </b> </td>
         </tr>
         <?php
             }

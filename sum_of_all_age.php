@@ -19,7 +19,7 @@ require_once 'conn.php';
     <div class="container mt-3">
     <h1>Get the sum of all age in Table</h1>
     <p>Your task for this challenge is to return a sum of all the ages in the table. Your query should return 139.</p>          
-    <table class="table table-bordered">
+    <table class="table table-bordered w-25">
         <thead>
         <tr>
             <th>id</th>
@@ -30,7 +30,8 @@ require_once 'conn.php';
         <tbody>
         <?php
         // sql query
-        $sql = "SELECT * FROM ages ";
+        // select all rows from table ages
+        $sql = "SELECT * FROM ages";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
         if($result->num_rows > 0) {
@@ -48,7 +49,7 @@ require_once 'conn.php';
         }    
         ?>
         <tr>
-            <td class="text-center" colspan="2"> <b> Total </b> </td>
+            <td class="text-center" colspan="2">Answer: <b>Total </b> </td>
             <?php
             // call the sum function to get the sum of column age
             $sql = "SELECT SUM(Age) AS total FROM ages";

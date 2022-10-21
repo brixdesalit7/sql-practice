@@ -20,7 +20,7 @@ require_once 'conn.php';
     <h1>Return a greeting string</h1> 
     <p>Your challenge is to return a result set that has a column called Greeting in it. This column will take the value from the
     Name column and return a string like this, with the name inserted into it: Hi, Bob! How are you today?</p>        
-    <table class="table table-bordered">
+    <table class="table table-bordered w-25">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -43,19 +43,21 @@ require_once 'conn.php';
         </tr>
         <?php
             }
-        }    
+        } else {
+            echo "<h1>No Result</h1>";
+        }  
         ?>
         </tbody>
     </table>
     <h2>Answer : </h2>
-    <table class="table table-bordered">
+    <table class="table table-bordered w-25">
         <tr>
-            <th class="text-center display-6" colspan="2">Greeting</th>
+            <th class="text-center" colspan="2">Greeting</th>
         </tr>
         <tbody>
         <?php
         // sql query
-        // select uniques values with distinct
+        // select all row from greeting table
         $sql = "SELECT  * FROM greeting";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
@@ -69,7 +71,9 @@ require_once 'conn.php';
         </tr>
         <?php
             }
-        }    
+        }  else {
+            echo "<h1>No Result</h1>";
+        }   
         ?>
         </tbody>
     </table>

@@ -20,7 +20,7 @@ require_once 'conn.php';
     <h1>Who needs a passport</h1>
     <p>The challenge here is to assume that you’re a Canadian border guard. Citizens from the United States and Canada don’t need a
     passport to cross the border. Write a query to find all the names that need a passport to cross.</p>          
-    <table class="table table-bordered">
+    <table class="table table-bordered w-25">
         <thead>
         <tr>
             <th>id</th>
@@ -31,6 +31,7 @@ require_once 'conn.php';
         <tbody>
         <?php
         // sql query
+        // select all rows from passport table
         $sql = "SELECT * FROM passport ";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
@@ -51,10 +52,16 @@ require_once 'conn.php';
         </tbody>
     </table>
     <h2>Answer : </h2>
-    <table class="table table-bordered"> 
+    <table class="table table-bordered w-25">
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Country</th>
+        </tr>
         <tbody>
         <?php
         // sql query
+        // select all from passport where row country is not equal to canada and united states
         $sql = "SELECT * FROM passport WHERE Country != 'Canada' AND Country != 'United States' ";
         $result = $conn->query($sql);
         // check if there are zero or more rows return

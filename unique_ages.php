@@ -20,7 +20,7 @@ require_once 'conn.php';
     <h1>Get the unique age in the table</h1> 
     <p>For this challenge, write a query that’ll return all unique ages from the table. 
     Your result should have these values: 18, 19, 20, 21</p>         
-    <table class="table table-bordered">
+    <table class="table table-bordered w-25">
         <thead>
         <tr>
             <th>id</th>
@@ -47,12 +47,14 @@ require_once 'conn.php';
         </tr>
         <?php
             }
-        }    
+        } else {
+            echo "<h1>No Result</h1>";
+        }
         ?>
         </tbody>
     </table>
     <h2>Answer : </h2>
-    <table class="table table-bordered">
+    <table class="table table-bordered w-25">
         <tbody>
         <?php
         // sql query
