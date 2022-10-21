@@ -62,7 +62,7 @@ require_once 'conn.php';
         <?php
         // sql query
         // extract a value of row
-        // check if the sign of value is negative with sign() if true return then the absolute value with abs()
+        // check if the sign of value is negative with sign() if true return then return the absolute value with abs()
         // if the sign of value is positive then add a minus sign to value
         $sql = "SELECT id , Value, CASE WHEN SIGN(Value) = -1 THEN ABS(Value) WHEN SIGN(Value) = 1 THEN -Value END AS opposite_val FROM opposite ";
         $result = $conn->query($sql);

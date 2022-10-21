@@ -59,7 +59,7 @@ require_once 'conn.php';
         <?php
         // sql query
         // select uniques values with distinct
-        $sql = "SELECT DISTINCT Age  FROM ages";
+        $sql = "SELECT DISTINCT Age FROM ages";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
         if($result->num_rows > 0) {

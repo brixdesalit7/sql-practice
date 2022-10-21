@@ -65,7 +65,7 @@ require_once 'conn.php';
         // sql query
         // filter the sql with where
         // sign will check if the value is positive or negative 
-        // where year is equal to 2021 and sign is positive
+        // where year is equal 2021 and sign is positive
         $sql = "SELECT * FROM division_revenue WHERE Year = 2021 AND SIGN(Revenue) = 1";
         $result = $conn->query($sql);
         // check if there are zero or more rows return

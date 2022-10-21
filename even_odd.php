@@ -30,7 +30,7 @@ require_once 'conn.php';
         <tbody>
         <?php
         // sql query
-        // select all the row in products table
+        // select all the row in even table
         $sql = "SELECT * FROM even_odd";
         $result = $conn->query($sql);
         // check if there are zero or more rows return

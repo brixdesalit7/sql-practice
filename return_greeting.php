@@ -58,7 +58,7 @@ require_once 'conn.php';
         <?php
         // sql query
         // select all row from greeting table
-        $sql = "SELECT  * FROM greeting";
+        $sql = "SELECT * FROM greeting";
         $result = $conn->query($sql);
         // check if there are zero or more rows return
         if($result->num_rows > 0) {
